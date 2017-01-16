@@ -3,7 +3,7 @@ angular.module('templates', ['src/wizardTemplate.html']);
 angular.module("src/wizardTemplate.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/wizardTemplate.html",
     "<div class=\"row wizard-container\">\n" +
-    "    <div class=\"col-md-3 col-xs-12\">\n" +
+    "  <div ng-class=\"{'col-md-3 col-xs-12': (!hideProgress)}\" ng-show=\"!hideProgress\">\n" +
     "        <ul class=\"nav nav-pills nav-stacked wizard-sidebar\">\n" +
     "            <li tooltip=\"{{getProgressPercentage() | number : 2}}%\">\n" +
     "                <progressbar value=\"getProgressPercentage()\" type=\"{{getProgressPercentage() == 100 ? 'success' : 'default'}}\"></progressbar>\n" +
@@ -16,7 +16,7 @@ angular.module("src/wizardTemplate.html", []).run(["$templateCache", function($t
     "            </li>\n" +
     "        </ul>\n" +
     "    </div>\n" +
-    "    <div class=\"col-md-9 col-xs-12 wizard-main\">\n" +
+    "    <div ng-class=\"{'col-md-9 col-xs-12 wizard-main': (!hideProgress), 'col-md-12 col-xs-12 wizard-main': hideProgress}\">\n" +
     "        <ul class=\"pager\">\n" +
     "            <li class=\"previous\" ng-class=\"{disabled: !hasPrevious()}\"><a ng-click=\"goToPrevious()\"><i class=\"fa fa-arrow-circle-left\"></i> {{prevString}}</a></li>\n" +
     "            <li ng-repeat=\"step in steps\">\n" +
@@ -27,7 +27,7 @@ angular.module("src/wizardTemplate.html", []).run(["$templateCache", function($t
     "        </ul>\n" +
     "        <div class=\"wizard-step-container\" ng-transclude></div>\n" +
     "    </div>\n" +
-    "    <div class=\"row\">\n" +
+    "    <div class=\"row\" ng-show=\"!hideSubmit\">\n" +
     "        <div class=\"col-xs-12\">\n" +
     "            <button class=\"btn btn-primary btn-block submit animate fade-in-out\" ng-hide=\"!isSubmittable()\" ng-click=\"onSubmitClicked()\" ng-disabled=\"submitting\">{{submitString}} <i class=\"fa fa-circle-o-notch fa-spin\" ng-show=\"submitting\"></i></button>\n" +
     "        </div>\n" +

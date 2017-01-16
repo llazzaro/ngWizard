@@ -45,6 +45,8 @@ angular.module('app', ['ngWizard'])
     wizardConfigProvider.nextString = 'Next';
     wizardConfigProvider.prevString = 'Previous';
     wizardConfigProvider.submitString = 'Submit';
+    wizardConfigProvider.hideSubmit = false;
+    wizardConfigProvider.hideProgress = false;
   })
 ```
 

@@ -1,5 +1,5 @@
 ﻿<div class="row wizard-container">
-    <div class="col-md-3 col-xs-12">
+  <div ng-class="{'col-md-3 col-xs-12': (!hideProgress)}" ng-show="!hideProgress">
         <ul class="nav nav-pills nav-stacked wizard-sidebar">
             <li tooltip="{{getProgressPercentage() | number : 2}}%">
                 <progressbar value="getProgressPercentage()" type="{{getProgressPercentage() == 100 ? 'success' : 'default'}}"></progressbar>
@@ -12,7 +12,7 @@
             </li>
         </ul>
     </div>
-    <div class="col-md-9 col-xs-12 wizard-main">
+    <div ng-class="{'col-md-9 col-xs-12 wizard-main': (!hideProgress), 'col-md-12 col-xs-12 wizard-main': hideProgress}">
         <ul class="pager">
             <li class="previous" ng-class="{disabled: !hasPrevious()}"><a ng-click="goToPrevious()"><i class="fa fa-arrow-circle-left"></i> {{prevString}}</a></li>
             <li ng-repeat="step in steps">
@@ -23,7 +23,7 @@
         </ul>
         <div class="wizard-step-container" ng-transclude></div>
     </div>
-    <div class="row">
+    <div class="row" ng-show="!hideSubmit">
         <div class="col-xs-12">
             <button class="btn btn-primary btn-block submit animate fade-in-out" ng-hide="!isSubmittable()" ng-click="onSubmitClicked()" ng-disabled="submitting">{{submitString}} <i class="fa fa-circle-o-notch fa-spin" ng-show="submitting"></i></button>
         </div>

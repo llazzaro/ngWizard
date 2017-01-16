@@ -14,6 +14,8 @@
                 $scope.prevString = wizardConfigProvider.prevString;
                 $scope.nextString = wizardConfigProvider.nextString;
                 $scope.submitString = wizardConfigProvider.submitString;
+                $scope.hideSubmit = wizardConfigProvider.hideSubmit;
+                $scope.hideProgress = wizardConfigProvider.hideProgress;
 
                 $scope.currentStepNumber = $scope.currentStepNumber || 0;
 
@@ -168,6 +170,8 @@
       this.nextString = 'Next';
       this.prevString = 'Previous';
       this.submitString = 'Submit';
+      this.hideSubmit = false;
+      this.hideProgress = false;
 
       this.$get = function() {
         return this;
